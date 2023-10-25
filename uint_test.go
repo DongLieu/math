@@ -99,6 +99,26 @@ func (s *uintTestSuite) TestIsNil() {
 	s.Require().True(sdkmath.Uint{}.IsNil())
 }
 
+func (s *uintTestSuite) TestConvertToBigIntMutativeForUint() {
+	r := big.NewInt(42)
+	i := sdkmath.NewUintFromBigInt(r)
+
+	// Compare value of BigInt & BigIntMut
+	s.Require().Equal(i.BigInt(), i.BigIntMut())
+
+	// Modify BigIntMut() pointer and ensure i.BigIntMut() & i.BigInt() change
+	p := i.BigIntMut()
+	p.SetInt64(50)
+	s.Require().Equal(big.NewInt(50), i.BigIntMut())
+	s.Require().Equal(big.NewInt(50), i.BigInt())
+
+	// Modify big.Int() pointer and ensure i.BigIntMut() & i.BigInt() don't change
+	p = i.BigInt()
+	p.SetInt64(60)
+	s.Require().NotEqual(big.NewInt(60), i.BigIntMut())
+	s.Require().NotEqual(big.NewInt(60), i.BigInt())
+}
+
 func (s *uintTestSuite) TestArithUint() {
 	for d := 0; d < 1000; d++ {
 		n1 := uint64(rand.Uint32())
