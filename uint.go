@@ -24,6 +24,7 @@ func (u Uint) BigInt() *big.Int {
 // BigInt converts Uint to big.Int, mutative the input
 func (u Uint) BigIntMut() *big.Int {
 	if u.IsNil() {
+		println("hhh")
 		return nil
 	}
 	return u.i
