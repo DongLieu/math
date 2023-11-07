@@ -116,6 +116,8 @@ func (s *uintTestSuite) TestConvertToBigIntMutativeForUint() {
 	// Modify big.Int() pointer and ensure i.BigIntMut() & i.BigInt() don't change
 	p2 := i.BigInt()
 	p2.SetInt64(50)
+	fmt.Printf("%v \n", p1)
+	fmt.Printf("%v \n", p1)
 	s.Require().NotEqual(big.NewInt(50), i.BigIntMut())
 	s.Require().NotEqual(big.NewInt(50), i.BigInt())
 }
