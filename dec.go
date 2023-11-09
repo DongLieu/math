@@ -235,6 +235,7 @@ func (d LegacyDec) BigInt() *big.Int {
 	return cp.Set(d.i)
 }
 
+// BigIntMut converts LegacyDec to big.Int, mutative the input
 func (d LegacyDec) BigIntMut() *big.Int {
 	if d.IsNil() {
 		return nil
