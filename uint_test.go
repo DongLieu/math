@@ -111,6 +111,7 @@ func (s *uintTestSuite) TestConvertToBigIntMutativeForUint() {
 	fmt.Printf("%v \n", p1)
 	fmt.Printf("%v \n", p1)
 	p1.SetInt64(40)
+	fmt.Printf("ta co p1 = %v \n", p1)
 	s.Require().Equal(big.NewInt(40), i.BigIntMut())
 	s.Require().Equal(big.NewInt(40), i.BigInt())
 	fmt.Printf("%v \n", p1)
@@ -121,6 +122,8 @@ func (s *uintTestSuite) TestConvertToBigIntMutativeForUint() {
 	p2 := i.BigInt()
 	fmt.Printf("%v \n", p1)
 	p2.SetInt64(50)
+	fmt.Printf("%v \n", p1)
+	fmt.Printf("%v \n", p1)
 	s.Require().NotEqual(big.NewInt(50), i.BigIntMut())
 	s.Require().NotEqual(big.NewInt(50), i.BigInt())
 }
